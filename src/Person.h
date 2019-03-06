@@ -40,4 +40,17 @@ class Person {
     void work_with_team();
     void learn();
     
+    // sets
+    void set_id(uint32_t id);
+    void set_advisror_leg(bool leg);
+    void set_activity(bool active);
+    void set_current_connections(uint16_t num);
+    void set_connection_search_activity(double activity);
+    void set_connection_growth(uint16_t growth);
+    void set_pool_to_training_conv(double conv);
+    void set_training_to_meeting_conv(double conv);
+    void set_meeting_to_meeting3_conv(double conv);
+    void set_meeting3_to_school_conv(double conv);
+    void set_learn_activity(double activity);
+    void set_team_work_activity(double activity);
 };
