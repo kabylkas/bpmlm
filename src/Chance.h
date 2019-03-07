@@ -2,6 +2,7 @@
 
 #include <cstdlib>
 #include <ctime>
+#include <stdint.h>
 
 class Chance {
   private:
@@ -9,6 +10,7 @@ class Chance {
 
   public:
     Chance(uint32_t seed);
+    Chance();
     ~Chance();
     bool success(double conv);
 };

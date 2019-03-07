@@ -1,10 +1,11 @@
 #pragma once
+#include <stdint.h>
 
 class Person {
   private:
     // General info
     uint32_t id;
-    bool advisror_leg; // false = left
+    bool advisor_leg; // false = left
     uint32_t left_points;
     uint32_t right_points;
 
