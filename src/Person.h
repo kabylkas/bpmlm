@@ -5,6 +5,8 @@ class Person {
     // General info
     uint32_t id;
     bool advisror_leg; // false = left
+    uint32_t left_points;
+    uint32_t right_points;
 
     // is the person active
     bool active;
