@@ -24,13 +24,14 @@ endif(DEBUG)
 set (SIM_HDR 
   ${SRC_DIR}/Person.h
   ${SRC_DIR}/Chance.h
+  ${SRC_DIR}/Simulation.h
 )
 
 set (SIM_SRC 
   ${SRC_DIR}/main.cpp
   ${SRC_DIR}/Person.cpp
   ${SRC_DIR}/Chance.cpp
-  
+  ${SRC_DIR}/Simulation.cpp
 )
 
 add_subdirectory(tests)
