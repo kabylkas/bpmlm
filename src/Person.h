@@ -50,7 +50,7 @@ class Person {
     
     // sets
     void set_id(uint32_t id);
-    void set_advisror_leg(bool leg);
+    void set_advisor_leg(bool leg);
     void set_activity(bool active);
     void set_pool_connections(uint16_t num);
     void set_connection_search_activity(double activity);
@@ -64,6 +64,12 @@ class Person {
     void set_left_points(uint32_t points);
     void set_right_points(uint32_t points);
 
+    // gets
+    bool is_active();
+    uint16_t get_pool_connections();
+    uint16_t get_pool_training();
+    uint16_t get_pool_meeting();
+    uint16_t get_pool_meeting3();
     // aux
     uint16_t invitee_responce();
 };

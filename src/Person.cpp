@@ -1,7 +1,23 @@
 #include "Person.h"
 
 Person::Person() {
-
+  this->id                         = 0;
+  this->advisor_leg                = false;
+  this->left_points                = 0;
+  this->right_points               = 0;
+  this->active                     = false;
+  this->pool_connections           = 0;
+  this->pool_training              = 0;
+  this->pool_meeting               = 0;
+  this->pool_meeting3              = 0;
+  this->connection_search_activity = 0.0;
+  this->connection_growth          = 0;
+  this->pool_to_training_conv      = 0;
+  this->training_to_meeting_conv   = 0;
+  this->meeting_to_meeting3_conv   = 0;
+  this->meeting3_to_school_conv    = 0;
+  this->learn_activity             = 0;
+  this->team_work_activity         = 0;
 }
 
 Person::~Person() {
@@ -73,7 +89,7 @@ void Person::set_id(uint32_t id) {
   this->id = id;
 }
 
-void Person::set_advisror_leg(bool leg) {
+void Person::set_advisor_leg(bool leg) {
   this->advisor_leg = leg;
 }
 
@@ -123,6 +139,27 @@ void Person::set_left_points(uint32_t points) {
 
 void Person::set_right_points(uint32_t points) {
   this->right_points = points;
+}
+
+//gets
+bool Person::is_active() {
+  return this->active;
+}
+
+uint16_t Person::get_pool_connections() {
+  return this->pool_connections;
+}
+
+uint16_t Person::get_pool_training() {
+  return this->pool_training;
+}
+
+uint16_t Person::get_pool_meeting() {
+  return this->pool_meeting;
+}
+
+uint16_t Person::get_pool_meeting3() {
+  return this->pool_meeting3;
 }
 
 uint16_t Person::invitee_responce() {
