@@ -1,6 +1,8 @@
 #pragma once
 #include <stdint.h>
 #include "Chance.h"
+#include <string>
+#include <sstream>
 
 class Person {
   private:
@@ -33,7 +35,7 @@ class Person {
     double team_work_activity;
 
     // My personally invited people
-    uint16_t my_invitees;
+    uint16_t num_invitees;
 
   public:
     Person();
@@ -49,6 +51,7 @@ class Person {
     void learn();
     
     // sets
+    void set(bool advisor_leg, double activity_rate);
     void set_id(uint32_t id);
     void set_advisor_leg(bool leg);
     void set_activity(bool active);
@@ -66,10 +69,18 @@ class Person {
 
     // gets
     bool is_active();
+    bool is_qualified();
     uint16_t get_pool_connections();
     uint16_t get_pool_training();
     uint16_t get_pool_meeting();
     uint16_t get_pool_meeting3();
+    uint32_t get_right_points();
+    uint32_t get_left_points();
+    uint16_t get_num_invitees();
+    bool get_advisor_leg();
+
     // aux
     uint16_t invitee_responce();
+    void add_points(bool advisor_leg, uint32_t points);
+    std::string to_string();
 };

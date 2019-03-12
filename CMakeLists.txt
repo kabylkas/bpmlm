@@ -1,5 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
-
+cmake_minimum_required(VERSION 2.8)
 project(bpmlm)
 
 set (FLAGS "-std=c++11")
@@ -25,6 +24,7 @@ set (SIM_HDR
   ${SRC_DIR}/Person.h
   ${SRC_DIR}/Chance.h
   ${SRC_DIR}/Simulation.h
+  ${SRC_DIR}/ProductLine.h
 )
 
 set (SIM_SRC 
@@ -32,6 +32,7 @@ set (SIM_SRC
   ${SRC_DIR}/Person.cpp
   ${SRC_DIR}/Chance.cpp
   ${SRC_DIR}/Simulation.cpp
+  ${SRC_DIR}/ProductLine.cpp
 )
 
 add_subdirectory(tests)

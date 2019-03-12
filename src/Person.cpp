@@ -18,6 +18,7 @@ Person::Person() {
   this->meeting3_to_school_conv    = 0;
   this->learn_activity             = 0;
   this->team_work_activity         = 0;
+  this->num_invitees               = 0;
 }
 
 Person::~Person() {
@@ -77,6 +78,7 @@ bool Person::invite_to_school() {
     success = this->chance.success(this->meeting3_to_school_conv);
     if (success) {
       pool_meeting3--;
+      num_invitees++;
     } else {
       pool_meeting3 -= invitee_responce();
     }
@@ -85,6 +87,22 @@ bool Person::invite_to_school() {
 }
 
 //sets
+void Person::set(bool advisor_leg, double activity_rate) {
+  this->advisor_leg                = advisor_leg;
+  this->active                     = this->chance.success(activity_rate);
+  if (this->active) {
+    this->pool_connections           = chance.get_init_pool();
+    this->connection_search_activity = 0.0;
+    this->connection_growth          = 1;
+    this->pool_to_training_conv      = chance.get_conv();
+    this->training_to_meeting_conv   = chance.get_conv();
+    this->meeting_to_meeting3_conv   = chance.get_conv();
+    this->meeting3_to_school_conv    = chance.get_conv();
+    this->learn_activity             = chance.get_conv();
+    this->team_work_activity         = chance.get_conv();
+  }
+}
+
 void Person::set_id(uint32_t id) {
   this->id = id;
 }
@@ -141,9 +159,13 @@ void Person::set_right_points(uint32_t points) {
   this->right_points = points;
 }
 
-//gets
+// gets
 bool Person::is_active() {
   return this->active;
+}
+
+bool Person::is_qualified() {
+  return (this->num_invitees >= 2);
 }
 
 uint16_t Person::get_pool_connections() {
@@ -162,7 +184,38 @@ uint16_t Person::get_pool_meeting3() {
   return this->pool_meeting3;
 }
 
+uint32_t Person::get_right_points() {
+  return this->right_points;
+}
+
+uint32_t Person::get_left_points() {
+  return this->left_points;
+}
+
+uint16_t Person::get_num_invitees() {
+  return this->num_invitees;
+}
+
+bool Person::get_advisor_leg() {
+  return this->advisor_leg;
+}
+// aux
 uint16_t Person::invitee_responce() {
   // TODO: try differen algorithms
   return 1;
+}
+
+void Person::add_points(bool advisor_leg, uint32_t points) {
+  if (advisor_leg) {
+    this->right_points += points;
+  } else {
+    this->left_points += points;
+  }
+}
+
+std::string Person::to_string() {
+  std::stringstream out;
+  out << "active: " << this->active << ", ";
+  out << "advisor leg: " << this->advisor_leg << ", ";
+  return out.str();
 }
