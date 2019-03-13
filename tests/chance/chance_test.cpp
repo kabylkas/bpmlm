@@ -25,5 +25,10 @@ int main() {
   std::cout << "----------------" << std::endl;
   std::cout << "Conv  = " << conv << std::endl;
   std::cout << "Ave   = " << sum/(iters/1.0) << std::endl;
+  std::cout << "----------------" << std::endl;
+
+  for (uint32_t i = 0; i < 100; i++) {
+    std::cout << c.get_conv() << std::endl;
+  }
   return 0;
 }

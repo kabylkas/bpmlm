@@ -46,10 +46,8 @@ void Simulation::setup_me() {
 void Simulation::run_detailed() {
   std::vector<Person*> people_buffer;
   Person* me = this->get_me();
+  uint32_t limit = 1000000;
   for (uint32_t day = 0; day < this->days; day++) {
-    if (me->get_left_points() > 1000000 && me->get_right_points() > 1000000) {
-      break;
-    }
     people_buffer.clear();
     #ifdef TRACE
     std::cout << "Starting day " << day << ". People in team = " << this->people.size() << std::endl;
@@ -60,7 +58,17 @@ void Simulation::run_detailed() {
       std::cout << "Person " << i << " is working now." << std::endl;
       std::cout << "Person " << i << "'s stats: " << p->to_string() << std::endl;
       #endif
-      if (p->is_active()) {
+
+      bool skip = false;
+      if (!p->is_active()) {
+        skip = true;
+      } else if (me->get_left_points() > limit && p->get_advisor_leg() == false) {
+        skip = true;
+      } else if (me->get_right_points() > limit && p->get_advisor_leg() == true) {
+        skip = true;
+      }
+
+      if (!skip) {
         p->find_connections();
         p->learn();
         p->invite_to_training();

@@ -29,5 +29,12 @@ uint32_t Chance::get_init_pool() {
 
 double Chance::get_conv() {
   double r = std::rand()/(RAND_MAX/1.0);
+  bool regular = this->success(0.9);
+  if (regular) {
+    r = r * 0.2;
+  } else {
+    r = r * 0.3;
+    r = r + 0.2;
+  }
   return r;
 }
